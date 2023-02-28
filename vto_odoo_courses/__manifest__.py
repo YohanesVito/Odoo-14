@@ -1,4 +1,4 @@
-
+ 
 {
     "name": "Odoo Course Management",
     "version": "14.0.2.0.1",
