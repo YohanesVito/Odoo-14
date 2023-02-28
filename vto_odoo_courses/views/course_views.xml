@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="odoo_course_form_view" model="ir.ui.view">
+        <field name="name">odoo.course.form</field>
+        <field name="model">odoo.course</field>
+        <field name="arch" type="xml">
+            <form string="Odoo Courses">
+                <sheet>
+                    <group>
+                        <group name="kelompok_kiri">
+                            <field name="name" placeholder="e.g. Functional Training" />
+                        </group>
+                        <group name="kelompok_kanan">
+                            <field name="instructor_id" />
+                        </group>
+                    </group>
+                    <field name="notes" placeholder="Write a simple notes here if you want" />
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="odoo_course_list_view" model="ir.ui.view">
+        <field name="name">odoo.course.list</field>
+        <field name="model">odoo.course</field>
+        <field name="arch" type="xml">
+            <tree string="Odoo Courses">
+                <field name="name" />
+                <field name="notes" />
+                <field name="instructor_id" />
+            </tree>
+        </field>
+    </record>
+    <record id="odoo_course_search_view" model="ir.ui.view">
+        <field name="name">odoo.course.search</field>
+        <field name="model">odoo.course</field>
+        <field name="arch" type="xml">
+            <search string="Odoo Courses">
+                <field name="name" />
+                <field name="notes" />
+                <field name="instructor_id" />
+            </search>
+        </field>
+    </record>
+
+    <!-- Action to call odoo_course data -->
+    <record id="action_odoo_course_view" model="ir.actions.act_window">
+        <field name="name">Courses</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">odoo.course</field>
+        <field name="view_model">tree,form</field>
+        <field name="search_view_id" ref="odoo_course_search_view" />
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a course in your courses business
+            </p>
+            <p>
+                Odoo helps you to easily define new course
+            </p>
+        </field>
+        <field name="name">Contacts</field>
+        <field name="name">Contacts</field>
+        <field name="name">Contacts</field>
+        <field name="name">Contacts</field>
+    </record>
+
+    <menuitem id="menu_odoo_course_view"
+        name="Courses"
+        action="action_odoo_course_view"
+        parent="odoo_course_courses_menu"
+        sequence="1" />
+</odoo>

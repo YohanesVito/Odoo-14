@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Action to call instructors data -->
+    <record id="action_contact_instructors" model="ir.actions.act_window">
+        <field name="name">Instructor</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_model">kanban,tree,form,activity</field>
+        <field name="search_view_id" ref="base.view_res_partner_filter" />
+        <field name="context">{'default_is_company': False}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create an Instructor in your address book
+            </p>
+            <p>
+                Odoo helps you to easily track all activities related to an instructors
+            </p>
+        </field>
+        <field name="name">Contacts</field>
+        <field name="name">Contacts</field>
+        <field name="name">Contacts</field>
+        <field name="name">Contacts</field>
+    </record>
+
+    <record id="action_contact_instructors_view_kanban" model="ir.actions.act_window.view">
+        <field name="sequence" eval="0" />
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="base.res_partner_kanban_view" />
+        <field name="act_window_id" ref="action_contact_instructors" />
+    </record>
+
+    <record id="action_contact_instructors_view_tree" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="base.view_partner_tree" />
+        <field name="act_window_id" ref="action_contact_instructors" />
+    </record>
+
+    <record id="action_contact_instructors_view_form" model="ir.actions.act_window.view">
+        <field name="sequence" eval="2" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="base.res_partner_form" />
+        <field name="act_window_id" ref="action_contact_instructors" />
+    </record>
+
+    <menuitem id="res_partner_instructor_menu"
+        name="Instructors"
+        action="action_contact_instructors"
+        parent="odoo_course_partner_menu"
+        sequence="2" />
+
+    <!-- Action to call attendees data -->
+    <record id="action_contact_attendees" model="ir.actions.act_window">
+        <field name="name">Attendees</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_model">kanban,tree,form,activity</field>
+        <field name="search_view_id" ref="base.view_res_partner_filter" />
+        <field name="context">{'default_is_company': False}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create an Attendees in your address book
+            </p>
+            <p>
+                Odoo helps you to easily track all activities related to an course attendees
+            </p>
+        </field>
+        <field name="name">Contacts</field>
+        <field name="name">Contacts</field>
+        <field name="name">Contacts</field>
+        <field name="name">Contacts</field>
+    </record>
+
+    <record id="action_contact_attendees_view_kanban" model="ir.actions.act_window.view">
+        <field name="sequence" eval="0" />
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="base.res_partner_kanban_view" />
+        <field name="act_window_id" ref="action_contact_attendees" />
+    </record>
+
+    <record id="action_contact_attendees_view_tree" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="base.view_partner_tree" />
+        <field name="act_window_id" ref="action_contact_attendees" />
+    </record>
+
+    <menuitem id="res_partner_attendees_menu"
+        name="Attendees"
+        action="action_contact_attendees"
+        parent="odoo_course_partner_menu"
+        sequence="3" />
+</odoo>

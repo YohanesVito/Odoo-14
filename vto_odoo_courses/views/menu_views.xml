@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    <!-- Menu Utama -->
     <menuitem id="odoo_course_menu_root"
         name="Odoo Courses"
         web_icon = "vto_odoo_courses,static/description/icon.png"
-        active = "False"
         sequence="7"/>
 
-    <menuitem id="odoo_course_menu_root"
+    <menuitem id="odoo_course_courses_menu"
         name="Courses"
         parent = "odoo_course_menu_root"
         sequence="2"/>
 
-    <menuitem id="odoo_course_menu_root"
+    <menuitem id="odoo_course_session_menu"
         name="Sessions"
         parent = "odoo_course_menu_root"
         sequence="3"/>
 
-    <menuitem id="odoo_course_menu_root"
+    <menuitem id="odoo_course_partner_menu"
         name="Partners"
         parent = "odoo_course_menu_root"
         sequence="4"/>
 
-    <menuitem id="odoo_course_menu_root"
+    <menuitem id="odoo_course_reporting_menu"
         name="Reporting"
         parent = "odoo_course_menu_root"
         sequence="5"/>
 
-    <menuitem id="odoo_course_menu_root"
+    <menuitem id="odoo_course_configuration_menu"
         name="Configuration"
         parent = "odoo_course_menu_root"
         sequence="6"/>       

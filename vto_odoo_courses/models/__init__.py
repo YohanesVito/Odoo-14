@@ -1,1 +1,1 @@
- 
+from . import odoo_course
