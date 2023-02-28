@@ -5,7 +5,7 @@
         <field name="name">Instructor</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">res.partner</field>
-        <field name="view_model">kanban,tree,form,activity</field>
+        <field name="view_mode">kanban,tree,form,activity</field>
         <field name="search_view_id" ref="base.view_res_partner_filter" />
         <field name="context">{'default_is_company': False}</field>
         <field name="help" type="html">
@@ -16,10 +16,6 @@
                 Odoo helps you to easily track all activities related to an instructors
             </p>
         </field>
-        <field name="name">Contacts</field>
-        <field name="name">Contacts</field>
-        <field name="name">Contacts</field>
-        <field name="name">Contacts</field>
     </record>
 
     <record id="action_contact_instructors_view_kanban" model="ir.actions.act_window.view">
@@ -39,7 +35,7 @@
     <record id="action_contact_instructors_view_form" model="ir.actions.act_window.view">
         <field name="sequence" eval="2" />
         <field name="view_mode">form</field>
-        <field name="view_id" ref="base.res_partner_form" />
+        <field name="view_id" ref="base.view_partner_form" />
         <field name="act_window_id" ref="action_contact_instructors" />
     </record>
 
@@ -54,7 +50,7 @@
         <field name="name">Attendees</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">res.partner</field>
-        <field name="view_model">kanban,tree,form,activity</field>
+        <field name="view_mode">kanban,tree,form,activity</field>
         <field name="search_view_id" ref="base.view_res_partner_filter" />
         <field name="context">{'default_is_company': False}</field>
         <field name="help" type="html">
