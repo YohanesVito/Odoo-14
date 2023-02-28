@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem id="odoo_course_menu_root"
+        name="Odoo Courses"
+        web_icon = "vto_odoo_courses,static/description/icon.png"
+        active = "False"
+        sequence="7"/>
+
+    <menuitem id="odoo_course_menu_root"
+        name="Courses"
+        parent = "odoo_course_menu_root"
+        sequence="2"/>
+
+    <menuitem id="odoo_course_menu_root"
+        name="Sessions"
+        parent = "odoo_course_menu_root"
+        sequence="3"/>
+
+    <menuitem id="odoo_course_menu_root"
+        name="Partners"
+        parent = "odoo_course_menu_root"
+        sequence="4"/>
+
+    <menuitem id="odoo_course_menu_root"
+        name="Reporting"
+        parent = "odoo_course_menu_root"
+        sequence="5"/>
+
+    <menuitem id="odoo_course_menu_root"
+        name="Configuration"
+        parent = "odoo_course_menu_root"
+        sequence="6"/>       
+</odoo>
