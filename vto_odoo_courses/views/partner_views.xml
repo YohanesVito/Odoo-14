@@ -46,13 +46,45 @@
         sequence="2" />
 
     <!-- Action to call attendees data -->
-    <record id="action_contact_attendees" model="ir.actions.act_window">
+    <!-- <record id="action_contact_attendees" model="ir.actions.act_window">
         <field name="name">Attendees</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">res.partner</field>
         <field name="view_mode">kanban,tree,form,activity</field>
         <field name="search_view_id" ref="base.view_res_partner_filter" />
         <field name="context">{'default_is_company': False}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create an Attendees in your address book
+            </p>
+            <p>
+                Odoo helps you to easily track all activities related to an course attendees
+            </p>
+        </field>
+    </record> -->
+
+    <!-- Action to call attendees data -->
+    <record id="action_contact_attendees" model="ir.actions.act_window">
+        <field name="name">Attendees Custom</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,tree,form,activity</field>
+        <field name="search_view_id" ref="base.view_res_partner_filter" />
+        <field name="context">{'default_is_company': False}</field>
+        <field name="arch" type="xml">
+            <form string="Odoo Attendees">
+                <sheet>
+                    <group>
+                        <group name="kelompok_kiri">
+                            <!-- <field name="name" placeholder="e.g. Functional Training" /> -->
+                        </group>
+                        <group name="kelompok_kanan">
+                            <field name="attendees_number" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create an Attendees in your address book
@@ -77,26 +109,10 @@
         <field name="act_window_id" ref="action_contact_attendees" />
     </record>
 
-    <record id="action_contact_attendees_view_list" model="ir.ui.view">
-        <field name="sequence" eval="2" />
-        <field name="name">odoo.partner.attendees.list</field>
-        <field name="model">odoo.partner.attendees</field>
-        <field name="inherit_id" ref="res_partner_view_form" />
-        <!-- <field name="arch" type="xml">
-            <field name="city" position="replace">
-                <field name="city" invisible="1" />
-                <field name="aal4_id" class="o_address_city"/>
-                <field name="aal3_id" class="o_address_city"/>
-                <field name="aal2_id" class="o_address_city"/>
-            </field>
-        </field> -->
-    </record> 
-
     <menuitem id="res_partner_attendees_menu"
         name="Attendees"
         action="action_contact_attendees"
         parent="odoo_course_partner_menu"
         sequence="3" />
-
     
 </odoo>
