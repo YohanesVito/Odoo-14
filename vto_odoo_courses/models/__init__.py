@@ -1,1 +1,1 @@
-from . import odoo_course
+from . import odoo_course, odoo_partner
