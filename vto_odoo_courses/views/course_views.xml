@@ -58,10 +58,6 @@
                 Odoo helps you to easily define new course
             </p>
         </field>
-        <field name="name">Contacts</field>
-        <field name="name">Contacts</field>
-        <field name="name">Contacts</field>
-        <field name="name">Contacts</field>
     </record>
 
     <menuitem id="menu_odoo_course_view"

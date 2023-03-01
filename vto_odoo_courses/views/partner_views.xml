@@ -61,10 +61,6 @@
                 Odoo helps you to easily track all activities related to an course attendees
             </p>
         </field>
-        <field name="name">Contacts</field>
-        <field name="name">Contacts</field>
-        <field name="name">Contacts</field>
-        <field name="name">Contacts</field>
     </record>
 
     <record id="action_contact_attendees_view_kanban" model="ir.actions.act_window.view">
@@ -81,9 +77,26 @@
         <field name="act_window_id" ref="action_contact_attendees" />
     </record>
 
+    <record id="action_contact_attendees_view_list" model="ir.ui.view">
+        <field name="sequence" eval="2" />
+        <field name="name">odoo.partner.attendees.list</field>
+        <field name="model">odoo.partner.attendees</field>
+        <field name="inherit_id" ref="res_partner_view_form" />
+        <!-- <field name="arch" type="xml">
+            <field name="city" position="replace">
+                <field name="city" invisible="1" />
+                <field name="aal4_id" class="o_address_city"/>
+                <field name="aal3_id" class="o_address_city"/>
+                <field name="aal2_id" class="o_address_city"/>
+            </field>
+        </field> -->
+    </record> 
+
     <menuitem id="res_partner_attendees_menu"
         name="Attendees"
         action="action_contact_attendees"
         parent="odoo_course_partner_menu"
         sequence="3" />
+
+    
 </odoo>
