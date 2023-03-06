@@ -12,7 +12,8 @@
         "views/partner_views.xml",
         "views/course_views.xml",
         # "views/instructor_views.xml",
-        # "views/attendees_views.xml"
+        # "views/attendees_views.xml",
+        "views/portal_views.xml",
     ],
     "demo": [],
     "installable": True,
