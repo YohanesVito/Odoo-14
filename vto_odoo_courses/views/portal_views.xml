@@ -1,5 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    <template id="portal_my_home_menu_course" name="Portal layout : courses menu entries" inherit_id="portal.portal_breadcrumbs" priority="20">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position = "inside">
+            <li t-if="page_name == 'course'" t-attf-class="breadcrumb-item #{'active ' if not courses else ''}">
+                <a t-if="courses" t-attf-href="/my/courses?{{ keep_query() }}">Courses</a>
+                <t t-else="">Courses</t>
+            </li>
+            <li t-if="courses" class="breadcrumb-item active">
+                <t t-esc="course.name"/>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home_course" name="Show Courses" customize_show="True" inherit_id="portal.portal_my_home" priority="20">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Courses</t>
+                <t t-set="url" t-value="'/my/courses'"/>
+                <t t-set="placeholder_count" t-value="'courses_count'"/>
+            </t>
+            <!-- <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Sales Orders</t>
+                <t t-set="url" t-value="'/my/orders'"/>
+                <t t-set="placeholder_count" t-value="'order_count'"/>
+            </t> -->
+        </xpath>
+    </template>
+
+
+
     <template id="portal_my_courses" name="My Courses Orders">
         <t t-call="portal.portal_layout">
             <t t-set="breadcrumbs_searchbar" t-value="True" />
