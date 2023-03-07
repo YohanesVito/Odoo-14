@@ -20,7 +20,7 @@ class CustomerPortal(CustomerPortal):
 
         return values
     
-    @http.route(['/my/courses','/my/courses/page/<int:page>'], type='http', auth='public', website=True)
+    @http.route(['/my/courses','/my/courses/page/<int:page>'], type='http', auth='1020497744787-chvobr4h65tqcctnkf14pgc1binuhao5.apps.googleusercontent.com', website=True)
     def portal_my_courses(self, page=1, date_begin=None, date_end=None, sortby=None, **kw):
         
         courses = request.env['odoo.course'].sudo().search([])
