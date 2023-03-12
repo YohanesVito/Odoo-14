@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.example.dvs.ListProductActivity
 import com.example.dvs.ViewModelFactory
 import com.example.dvs.WelcomeScreenActivity
 import com.example.dvs.databinding.ActivityLoginBinding
@@ -40,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
                 is Result.Success -> {
                     binding.progressBar.visibility = View.GONE
                     Toast.makeText(this@LoginActivity, "Berhasil Masuk", Toast.LENGTH_SHORT).show()
-                    val intentToHome = Intent(this, WelcomeScreenActivity::class.java)
+                    val intentToHome = Intent(this, ListProductActivity::class.java)
                     startActivity(intentToHome)
                     finish()
                 }

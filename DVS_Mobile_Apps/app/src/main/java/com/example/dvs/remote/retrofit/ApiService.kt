@@ -27,7 +27,7 @@ interface ApiService {
 //    ): Call<DataModel>
 
     @FormUrlEncoded
-    @POST("token")
+    @POST("/token")
     fun getToken(
         @Field("username") username: String,
         @Field("password") password: String,
