@@ -1,7 +1,7 @@
-package com.example.dvs.api
+package com.example.dvs.remote.retrofit
 
 import com.example.dvs.model.PartnerResponse
-import com.example.dvs.model.TokenResponse
+import com.example.dvs.model.LoginResponse
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -31,7 +31,7 @@ interface ApiService {
     fun getToken(
         @Field("username") username: String,
         @Field("password") password: String,
-    ): Call<TokenResponse>
+    ): Call<LoginResponse>
 
     @FormUrlEncoded
     @POST("/login")

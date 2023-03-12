@@ -1,4 +1,4 @@
-package com.example.dvs.api
+package com.example.dvs.remote.retrofit
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiConfig {
     companion object{
-        private const val remoteUrl = "http://34.207.42.7:6969/"
+        private const val remoteUrl = "https://api.rheem-vulcan.com/"
         private const val localUrl = "http://localhost:8080/docs/"
         fun getApiService(): ApiService {
             val loggingInterceptor =

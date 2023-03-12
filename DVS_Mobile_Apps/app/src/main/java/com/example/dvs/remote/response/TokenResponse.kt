@@ -2,7 +2,7 @@ package com.example.dvs.model
 
 import com.google.gson.annotations.SerializedName
 
-data class TokenResponse(
+data class LoginResponse(
 
 	@field:SerializedName("access_token")
 	val accessToken: String? = null,
