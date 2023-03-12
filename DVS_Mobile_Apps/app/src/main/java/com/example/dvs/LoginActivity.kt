@@ -15,7 +15,13 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         binding.btLogin.setOnClickListener {
+            val username = binding.etUsername.text.toString()
+            val password = binding.etPassword.text.toString()
+
+
             startActivity(Intent(this,ListProductActivity::class.java))
         }
 

@@ -15,6 +15,8 @@ class ListProductActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_product)
 
+        supportActionBar?.hide()
+
         // Set up RecyclerView
         recyclerView = findViewById(R.id.product_list)
         recyclerView.layoutManager = LinearLayoutManager(this)

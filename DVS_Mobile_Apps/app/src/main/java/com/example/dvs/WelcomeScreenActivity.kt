@@ -9,6 +9,7 @@ class WelcomeScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome_screen)
+        supportActionBar?.hide()
 
         val btContinue = findViewById<Button>(R.id.bt_continue)
 
