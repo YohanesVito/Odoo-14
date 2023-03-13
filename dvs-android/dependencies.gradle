@@ -1,0 +1,99 @@
+/*
+ * Copyright 2020 Shreyas Patil
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+ext {
+    // Android Plugin
+    androidGradlePluginVersion = '7.3.1'
+
+    // Compose compiler report generator plugin
+    composeCompilerReportGenVersion = "1.0.0"
+
+    // Kotlin
+    kotlinVersion = "1.8.10"
+    ktlintVersion = "11.2.0"
+    coroutinesVersion = "1.6.4"
+    koverVersion = "0.6.1"
+
+    jacocoVersion = "0.8.8"
+
+    // Android
+    appcompatVersion = '1.6.1'
+    coreKtxVersion = '1.9.0'
+    constraintlayoutVersion = "2.1.4"
+    swipeRefreshLayoutVersion = "1.1.0"
+    recyclerViewVersion = "1.2.1"
+    workmanagerVersion = '2.8.0'
+    lifecycleVersion = "2.5.1"
+    navigationVersion = '2.5.3'
+    securityCryptoVersion = '1.1.0-alpha05'
+    roomVersion = "2.5.0"
+    dataStoreVersion = '1.0.0'
+    legacySupportVersion = "1.0.0"
+    capturableVersion = "1.0.3"
+
+    // Activity & Fragment
+    activityVersion = '1.6.1'
+    fragmentVersion = '1.5.5'
+
+    // Design
+    materialDesignVersion = '1.8.0'
+
+    // Lottie Animation
+    lottieVersion = '6.0.0'
+
+    // Lottie Animation (Compose)
+    lottieComposeVersion = '6.0.0'
+
+    // DI
+    daggerHiltVersion = '2.44.2'
+    jetpackHiltVersion = "1.0.0"
+
+    // Networking
+    retrofitVersion = "2.9.0"
+    okHttpVersion = "4.10.0"
+
+    // Moshi
+    moshiVersion = '1.14.0'
+
+    // Other utility
+    leakCanaryVersion = "2.8.1"
+    javaxInjectVersion = "1"
+
+    // Jetpack Compose
+    composeBomVersion = "2023.01.00"
+    composeCompilerVersion = '1.4.3'
+
+    // Constrain Layout (Compose)
+    composeConstraintLayoutVersion = "1.0.1"
+
+    // Jetpack Compose Navigation
+    composeNavVersion = '2.5.3'
+
+    // Hilt Compose Navigation
+    hiltComposeNavVersion = "1.0.0"
+
+    // Accompanist
+    accompanistVersion = '0.28.0'
+
+    // Testing
+    jUnitVersion = "4.13.2"
+    kotestVersion = '5.5.5'
+    mockkVersion = '1.13.4'
+    androidTestCoreVersion = "1.5.0"
+    androidTestRunnerVersion = "1.5.2"
+    androidJUnitVersion = '1.1.5'
+    espressoVersion = '3.5.1'
+}

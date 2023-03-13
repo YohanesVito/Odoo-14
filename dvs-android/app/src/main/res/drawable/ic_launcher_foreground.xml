@@ -1,0 +1,39 @@
+<!--
+  ~ Copyright 2020 Shreyas Patil
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="559dp"
+    android:height="304.44dp"
+    android:viewportWidth="304.44"
+    android:viewportHeight="304.44">
+  <group android:scaleX="0.5002439"
+      android:scaleY="0.5902439"
+      android:translateX="1.19512"
+      android:translateY="0">
+      <path
+          android:pathData="M482.07,452.32q-27.78,0-71-9.53V412.32q46.59,17,76.61,17,23.11,0,37.19-9.52t14.07-25.05a29.08,29.08,0,0,0-9.22-21.69q-9.23-8.94-34-19.93l-19-8.64Q441.44,328.66,427,314.66t-14.45-32.6q0-25.05,23.11-41.24t58.91-16.19q31.87,0,67.29,8.35v28.13q-43.62-13.49-65.05-13.48-20.32,0-33.56,8.5T450,277.52q0,10.85,9.69,19.19t35.42,19.93l19.76,8.79q35.79,16,50,30.19A46.62,46.62,0,0,1,579,389.75q0,28.29-26.56,45.42T482.07,452.32Z"
+          android:fillColor="#fff"/>
+      <path
+          android:pathData="M30.13,446.9V230.05h75.24q33.64,0,54.36,7.18a83.88,83.88,0,0,1,35.87,24.32q24,27.26,24,71.79,0,54.07-29.82,83.81T105.83,446.9Zm32.11-23h41.14q44,0,62.39-22.71Q185.51,377,185.5,336.27q0-38.24-19.42-60.07A59.94,59.94,0,0,0,137.94,258q-16.36-4.9-49.24-4.91H62.24Z"
+          android:fillColor="#fff"/>
+      <path
+          android:pathData="M296.88,446.9C269.68,399,219.6,253.05,164.76,221.55c15.8,0,63.85-8.85,88.09,51.61C291.56,369.71,301.3,401,301.3,401s16.44-46.06,44.25-120.66,92.3-55.7,92.3-55.7c-49.94,24.73-104.31,173.91-132,222.27Z"
+          android:fillColor="#fff"/>
+      <path
+          android:pathData="M338,218.05c0,17.64-16.13,31.94-36,31.94s-36-14.3-36-31.94,36-70.18,36-70.18S338,200.42,338,218.05Zm-36-37s-20.23,30.57-20.23,40.84,9.05,18.58,20.23,18.58,20.22-8.32,20.22-18.58S301.94,181.09,301.94,181.09Z"
+          android:fillColor="#fff"/>
+  </group>
+</vector>
