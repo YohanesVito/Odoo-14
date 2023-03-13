@@ -1,1 +1,3 @@
 *.conf
+*.vscode
+*.DS_Store
