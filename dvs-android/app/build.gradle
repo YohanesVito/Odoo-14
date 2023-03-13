@@ -105,4 +105,8 @@ dependencies {
     testImplementation "io.kotest:kotest-property:$kotestVersion"
     testImplementation "io.mockk:mockk:$mockkVersion"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
+
+    //GSON
+    implementation "com.squareup,retrofit2:converter-gson:2.4.0"
+    implementation "com.google.code.gson:gson:2.9.0"
 }

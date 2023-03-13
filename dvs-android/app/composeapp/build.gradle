@@ -177,6 +177,11 @@ dependencies {
     // WorkManager for testing
     androidTestImplementation "androidx.work:work-testing:$workmanagerVersion"
 
+    //GSON
+    implementation "com.squareup,retrofit2:converter-gson:2.4.0"
+
+    implementation "com.google.code.gson:gson:2.9.0"
+
     // Leak Canary
     // Uncomment this when have to check for leaks
     // debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"

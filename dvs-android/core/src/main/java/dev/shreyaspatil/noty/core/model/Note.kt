@@ -23,3 +23,4 @@ data class Note(
     val created: Long,
     val isPinned: Boolean = false
 )
+

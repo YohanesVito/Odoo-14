@@ -16,17 +16,26 @@
 
 package dev.shreyaspatil.noty.data.remote.model.response
 
-//data class AuthResponse(
-//    override val status: State,
-//    override val message: String,
-//    val token: String?
-//) : BaseResponse
+import com.google.gson.annotations.SerializedName
 
 
-data class AuthResponse(
-    val status: String,
-    override val message: String,
-    val access_token: String,
-    val token_type: String,
-) : BaseResponse2
+data class Notes2Response(
 
+	@field:SerializedName("Notes2Response")
+	val notes2Response: List<Notes2ResponseItem?>? = null
+)
+
+data class Notes2ResponseItem(
+
+	@field:SerializedName("uid")
+	val uid: Int? = null,
+
+	@field:SerializedName("name")
+	val name: String? = null,
+
+	@field:SerializedName("memo")
+	val memo: String? = null,
+
+	@field:SerializedName("id")
+	val id: Int? = null
+)
