@@ -1,4 +1,4 @@
-package com.example.dvs
+package com.example.dvs.ui.splashscreen
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -9,6 +9,8 @@ import android.os.Handler
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
+import com.example.dvs.R
+import com.example.dvs.ui.welcomescreen.WelcomeScreenActivity
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 

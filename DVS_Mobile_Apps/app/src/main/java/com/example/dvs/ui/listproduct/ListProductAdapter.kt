@@ -3,10 +3,8 @@ package com.example.dvs.ui.listproduct
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dvs.Product
 import com.example.dvs.R
 import com.example.dvs.remote.response.ProductsResponseItem
 

@@ -2,12 +2,9 @@ package com.example.dvs.ui.listproduct
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dvs.Product
-import com.example.dvs.R
 import com.example.dvs.ViewModelFactory
 import com.example.dvs.databinding.ActivityListProductBinding
 import com.example.dvs.model.UserModel

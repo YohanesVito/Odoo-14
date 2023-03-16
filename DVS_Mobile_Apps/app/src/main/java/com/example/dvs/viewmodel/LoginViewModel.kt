@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.dvs.dataStore
 import com.example.dvs.remote.retrofit.ApiConfig
-import com.example.dvs.model.LoginResponse
+import com.example.dvs.remote.response.LoginResponse
 import com.example.dvs.model.UserPreference
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch

@@ -1,9 +1,10 @@
-package com.example.dvs
+package com.example.dvs.ui.welcomescreen
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.example.dvs.R
 import com.example.dvs.ui.login.LoginActivity
 
 class WelcomeScreenActivity : AppCompatActivity() {

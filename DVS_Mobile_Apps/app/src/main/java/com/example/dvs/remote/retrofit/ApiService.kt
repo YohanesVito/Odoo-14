@@ -1,8 +1,7 @@
 package com.example.dvs.remote.retrofit
 
 import com.example.dvs.remote.response.PartnerResponse
-import com.example.dvs.model.LoginResponse
-import com.example.dvs.remote.response.ProductsResponse
+import com.example.dvs.remote.response.LoginResponse
 import com.example.dvs.remote.response.ProductsResponseItem
 import retrofit2.Call
 import retrofit2.http.*
