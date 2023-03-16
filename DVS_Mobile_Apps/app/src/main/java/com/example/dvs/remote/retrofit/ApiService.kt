@@ -1,7 +1,9 @@
 package com.example.dvs.remote.retrofit
 
-import com.example.dvs.model.PartnerResponse
+import com.example.dvs.remote.response.PartnerResponse
 import com.example.dvs.model.LoginResponse
+import com.example.dvs.remote.response.ProductsResponse
+import com.example.dvs.remote.response.ProductsResponseItem
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -34,12 +36,22 @@ interface ApiService {
     ): Call<LoginResponse>
 
     @FormUrlEncoded
-    @POST("/login")
+    @GET("/partners")
     fun getPartner(
+        @Header("Authorization") token: String,
         @Field("is_company") is_company: Boolean,
-        @Field("offset") offset: Int,
         @Field("limit") limit: Int,
     ): Call<PartnerResponse>
+
+    @Headers("Accept: application/json")
+    @GET("/products")
+    fun getProducts(
+        @Header("Authorization") token: String,
+        @Query("search") search: String,
+        @Query("offset") offset: Int,
+        @Query("limit") limit: Int,
+    ): Call<List<ProductsResponseItem>>
+
 
 //    @FormUrlEncoded
 //    @POST("register")

@@ -1,4 +1,4 @@
-package com.example.dvs.model
+package com.example.dvs.remote.response
 
 import com.google.gson.annotations.SerializedName
 

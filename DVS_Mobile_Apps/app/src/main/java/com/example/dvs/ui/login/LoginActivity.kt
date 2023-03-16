@@ -6,9 +6,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.example.dvs.ListProductActivity
+import com.example.dvs.ui.listproduct.ListProductActivity
 import com.example.dvs.ViewModelFactory
-import com.example.dvs.WelcomeScreenActivity
 import com.example.dvs.databinding.ActivityLoginBinding
 import com.example.dvs.viewmodel.LoginViewModel
 import com.example.dvs.util.Result

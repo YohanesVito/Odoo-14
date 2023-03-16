@@ -16,9 +16,9 @@ class ViewModelFactory(private val context: Context) : ViewModelProvider.NewInst
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(context) as T
             }
-//            modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
-//                HomeViewModel(Injection.provideRepository(context)) as T
-//            }
+            modelClass.isAssignableFrom(ListProductViewModel::class.java) -> {
+                ListProductViewModel(context) as T
+            }
 //            modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
 //                RegisterViewModel(Injection.provideRepository(context)) as T
 //            }
