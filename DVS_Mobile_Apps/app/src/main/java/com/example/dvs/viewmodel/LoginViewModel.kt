@@ -5,10 +5,10 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.dvs.dataStore
 import com.example.dvs.remote.retrofit.ApiConfig
 import com.example.dvs.remote.response.LoginResponse
 import com.example.dvs.model.UserPreference
+import com.example.dvs.ui.splashscreen.dataStore
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import retrofit2.Call

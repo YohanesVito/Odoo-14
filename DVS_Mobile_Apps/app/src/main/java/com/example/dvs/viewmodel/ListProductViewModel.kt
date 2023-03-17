@@ -6,11 +6,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import com.example.dvs.dataStore
 import com.example.dvs.remote.retrofit.ApiConfig
 import com.example.dvs.model.UserModel
 import com.example.dvs.model.UserPreference
 import com.example.dvs.remote.response.ProductsResponseItem
+import com.example.dvs.ui.splashscreen.dataStore
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

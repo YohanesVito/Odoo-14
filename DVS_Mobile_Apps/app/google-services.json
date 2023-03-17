@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "812819632675",
+    "project_id": "proj14-dvs",
+    "storage_bucket": "proj14-dvs.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:812819632675:android:098c504c588c8cea95d796",
+        "android_client_info": {
+          "package_name": "com.example.dvs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "812819632675-onjfreq40eq6n8k406o27027atd2fb3p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDydbQIEpDPH9B8OLzzgidcdFS_bBtY6YI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "812819632675-onjfreq40eq6n8k406o27027atd2fb3p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
