@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.VIEW_MODEL_STORE_OWNER_KEY
 import androidx.lifecycle.ViewModelProvider
 import com.example.dvs.R
 import com.example.dvs.ViewModelFactory
@@ -38,6 +39,8 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var oneTapClient: SignInClient
     private lateinit var signInRequest: BeginSignInRequest
     private lateinit var googleSignInClient: GoogleSignInClient
+    private var access = ""
+    private var oauthUid = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -87,6 +90,10 @@ class LoginActivity : AppCompatActivity() {
             signInGoogle()
 
         }
+
+        binding.btTest.setOnClickListener {
+            testLogin()
+        }
     }
 
     private fun signInGoogle() {
@@ -121,12 +128,16 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this,account.displayName,Toast.LENGTH_SHORT).show()
                 Log.i("AKUN",account.toString())
                 Log.i("AKUN",account.id.toString())
+                Log.i("AKUN",account.idToken.toString())
+                access = account.idToken.toString()
+                oauthUid = account.id.toString()
                 Log.i("AKUN",account.displayName.toString())
                 Log.i("AKUN",account.email.toString())
                 Log.i("AKUN",account.photoUrl.toString())
+                Log.i("AKUN",account.givenName.toString())
                 binding.progressBar.visibility = View.GONE
-                val intent = Intent(this,ListProductActivity::class.java)
-                startActivity(intent)
+                //val intent = Intent(this,ListProductActivity::class.java)
+              //  startActivity(intent)
             }else{
                 Toast.makeText(this,it.exception.toString(),Toast.LENGTH_SHORT).show()
             }
@@ -139,6 +150,28 @@ class LoginActivity : AppCompatActivity() {
         val password = binding.etPassword.text.toString()
 
         loginViewModel.login(username, password).observe(this) {
+            when(it) {
+                is Result.Loading -> binding.progressBar.visibility = View.VISIBLE
+                is Result.Success -> {
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(this@LoginActivity, "Berhasil Masuk", Toast.LENGTH_SHORT).show()
+                    val intentToHome = Intent(this, ListProductActivity::class.java)
+                    startActivity(intentToHome)
+                    finish()
+                }
+                is Result.Error -> {
+                    Toast.makeText(this@LoginActivity, "Gagal Masuk", Toast.LENGTH_SHORT).show()
+                    binding.progressBar.visibility = View.GONE
+                }
+
+            }
+        }
+
+    }
+
+    private fun testLogin() {
+        val provider = "Google"
+        loginViewModel.testLogin(access = access, provider = provider, oauth_uid = oauthUid).observe(this) {
             when(it) {
                 is Result.Loading -> binding.progressBar.visibility = View.VISIBLE
                 is Result.Success -> {

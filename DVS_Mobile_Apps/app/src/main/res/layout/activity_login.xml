@@ -77,4 +77,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/bt_test"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/c1"
+        android:text="Test"
+        app:layout_constraintEnd_toEndOf="@+id/bt_login_google"
+        app:layout_constraintStart_toStartOf="@+id/bt_login_google"
+        app:layout_constraintTop_toBottomOf="@+id/bt_login_google" />
 </androidx.constraintlayout.widget.ConstraintLayout>
