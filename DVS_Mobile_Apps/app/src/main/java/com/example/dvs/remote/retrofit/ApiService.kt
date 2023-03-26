@@ -1,5 +1,6 @@
 package com.example.dvs.remote.retrofit
 
+import com.example.dvs.remote.response.AuthParam
 import com.example.dvs.remote.response.PartnerResponse
 import com.example.dvs.remote.response.LoginResponse
 import com.example.dvs.remote.response.ProductsResponseItem
@@ -50,6 +51,13 @@ interface ApiService {
         @Query("offset") offset: Int,
         @Query("limit") limit: Int,
     ): Call<List<ProductsResponseItem>>
+
+    @Headers("Content-Type: application/json")
+    @POST("/auth/login")
+//    fun sendDataList(@Body body: ArrayList<Mokura>): Call<InsertLoggingResponse>
+    fun signInToOdoo(@Body body: AuthParam): Call<LoginResponse>
+
+
 
 
 //    @FormUrlEncoded

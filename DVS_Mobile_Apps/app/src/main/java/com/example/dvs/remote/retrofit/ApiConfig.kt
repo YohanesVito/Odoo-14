@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ApiConfig {
     companion object{
         private const val remoteUrl = "https://api.rheem-vulcan.com/"
-        private const val localUrl = "http://localhost:8080/docs/"
+        private const val localUrl = "http://192.168.100.3:8000/"
         fun getApiService(): ApiService {
             val loggingInterceptor =
                 HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -16,7 +16,7 @@ class ApiConfig {
                 .addInterceptor(loggingInterceptor)
                 .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl(remoteUrl)
+                .baseUrl(localUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
