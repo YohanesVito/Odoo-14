@@ -14,7 +14,6 @@ import com.example.dvs.ui.splashscreen.dataStore
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import com.example.dvs.util.Result
 
 class ListProductViewModel(context: Context): ViewModel(){
     private val apiService = ApiConfig.getApiService()

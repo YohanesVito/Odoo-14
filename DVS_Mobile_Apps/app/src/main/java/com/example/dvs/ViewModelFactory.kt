@@ -3,6 +3,7 @@ package com.example.dvs
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.dvs.ui.notification.NotificationViewModel
 import com.example.dvs.viewmodel.*
 
 class ViewModelFactory(private val context: Context) : ViewModelProvider.NewInstanceFactory() {
@@ -10,9 +11,9 @@ class ViewModelFactory(private val context: Context) : ViewModelProvider.NewInst
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
 
-//            modelClass.isAssignableFrom(MainViewModel::class.java) -> {
-//                MainViewModel(Injection.provideRepository(context)) as T
-//            }
+            modelClass.isAssignableFrom(NotificationViewModel::class.java) -> {
+                NotificationViewModel(context) as T
+            }
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(context) as T
             }
