@@ -4,15 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/c1"
     tools:context=".ui.main.MainActivity">
+
+    <ImageView
+        android:id="@+id/iv_chat"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="144dp"
+        android:src="@drawable/menu_chat2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.319"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:padding="5dp"
+        android:text="Chat"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/iv_chat"
+        app:layout_constraintStart_toStartOf="@+id/iv_chat"
+        app:layout_constraintTop_toBottomOf="@+id/iv_chat" />
+
+    <ImageView
+        android:id="@+id/iv_product"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="40dp"
+        android:src="@drawable/menu_product"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_chat"
+        app:layout_constraintStart_toEndOf="@+id/iv_chat"
+        app:layout_constraintTop_toTopOf="@+id/iv_chat" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Product"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/iv_product"
+        app:layout_constraintStart_toStartOf="@+id/iv_product"
+        app:layout_constraintTop_toBottomOf="@+id/iv_product" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

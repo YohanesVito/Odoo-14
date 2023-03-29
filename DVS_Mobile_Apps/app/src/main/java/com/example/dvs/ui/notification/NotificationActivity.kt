@@ -27,25 +27,18 @@ class NotificationActivity : AppCompatActivity() {
 
         setupViewModel()
 
-        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-            if (!task.isSuccessful) {
-                Log.w("Notification Activity", "Fetching FCM registration token failed", task.exception)
-                return@OnCompleteListener
-            }
-
-            // Get new FCM registration token
-            val token = task.result
-
-            // Log and toast
-//            val msg = getString(R.string.msg_token_fmt, token)
-            Log.d("FCM registration token", token)
-//            Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-        })
+        TokenGenerator().generateFCMToken()
 
         // Observe the notificationLiveData object
-        notificationViewModel.getNotificationLiveData().observe(this) { it ->
+        notificationViewModel.getNotificationLiveData().observe(this) {
             showNotification(it.title, it.message)
         }
+
+        binding.btShowNotification.setOnClickListener {
+            //send notification to another user
+
+        }
+
 
     }
 

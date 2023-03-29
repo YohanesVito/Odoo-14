@@ -1,32 +1,12 @@
 package com.example.dvs.remote.retrofit
 
-import com.example.dvs.remote.response.AuthParam
-import com.example.dvs.remote.response.PartnerResponse
-import com.example.dvs.remote.response.LoginResponse
-import com.example.dvs.remote.response.ProductsResponseItem
+import com.example.dvs.remote.param.AuthParam
+import com.example.dvs.remote.param.NotificationParam
+import com.example.dvs.remote.response.*
 import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiService {
-
-//    @POST("data")
-//    @Headers("Authorization: token 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")
-//    fun getUser(
-//        @Query("q") username: String
-//    ): Call<SearchUserResponse>
-
-//    @FormUrlEncoded
-//    @POST("data")
-//    fun sendData(
-//        @Field("time_stamp") time_stamp: String,
-//        @Field("speed") speed: String,
-//        @Field("rpm") rpm: String,
-//        @Field("battery") battery: String,
-//        @Field("duty_cycle") duty_cycle: String,
-//        @Field("compass") compass: String,
-//        @Field("lat") lat: String,
-//        @Field("lon") lon: String,
-//    ): Call<DataModel>
 
     @FormUrlEncoded
     @POST("/token")
@@ -54,51 +34,14 @@ interface ApiService {
 
     @Headers("Content-Type: application/json")
     @POST("/auth/login")
-//    fun sendDataList(@Body body: ArrayList<Mokura>): Call<InsertLoggingResponse>
     fun signInToOdoo(@Body body: AuthParam): Call<LoginResponse>
 
+    @Headers(
+        "Content-Type: application/json",
+        "Authorization: key=AAAAvT_TUiM:APA91bHvSougEn-VjftqSw-NTC4fn8HFyzDmJbdfvuP51OKu6geRL-GRrzhMd_hS7TChZd8MtJ94_leEDIX6KkFmDTrp29PLs6Ub51IgX5rt5aAiDi498AazxdiP2FxX9PTFX4Csu_5X"
+    )
+    @POST("/fcm/send")
+    fun sendNotification(
+        @Body body: NotificationParam): Call<NotificationResponse>
 
-
-
-//    @FormUrlEncoded
-//    @POST("register")
-//    fun register(
-//        @Field("email") email: String,
-//        @Field("username") username: String,
-//        @Field("password") password: String
-//    ): Call<RegisterResponse>
-//
-//    @Headers("Content-Type: application/json")
-//    @POST("datalist")
-//    fun sendDataList(@Body body: ArrayList<Mokura>): Call<InsertLoggingResponse>
-//
-//    @FormUrlEncoded
-//    @POST("mokura/register")
-//    fun postMokura(
-//        @Field("hardware_serial") hardware_serial: String,
-//        @Field("hardware_name") hardware_name: String,
-//    ): Call<InsertHardwareResponse>
-
-//
-//    @Headers("Content-Type: application/json")
-//    @POST("datalist")
-//    fun sendDataList(@Body body: ArrayList<DataModel>): Call<DataModel>
-
-//    @GET("users/{username}")
-//    @Headers("Authorization: token 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")
-//    fun getDetailUser(
-//        @Path("username") username: String
-//    ): Call<DetailUserResponse>
-//
-//    @GET("users/{username}/followers")
-//    @Headers("Authorization: token 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")
-//    fun getUserFollowers(
-//        @Path("username") username: String
-//    ): Call<ArrayList<ListFollowersResponseItem>>
-//
-//    @GET("users/{username}/following")
-//    @Headers("Authorization: token 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")
-//    fun getUserFollowing(
-//        @Path("username") username: String
-//    ): Call<ArrayList<ListFollowingResponseItem>>
 }

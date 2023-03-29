@@ -20,9 +20,9 @@ class ViewModelFactory(private val context: Context) : ViewModelProvider.NewInst
             modelClass.isAssignableFrom(ListProductViewModel::class.java) -> {
                 ListProductViewModel(context) as T
             }
-//            modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
-//                RegisterViewModel(Injection.provideRepository(context)) as T
-//            }
+            modelClass.isAssignableFrom(ChatViewModel::class.java) -> {
+                ChatViewModel(context) as T
+            }
 //            modelClass.isAssignableFrom(MonitorViewModel::class.java) -> {
 //                MonitorViewModel(Injection.provideRepository(context)) as T
 //            }

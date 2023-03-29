@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.dvs.model.NotificationModel
-import com.google.firebase.messaging.RemoteMessage
 
 class NotificationViewModel(context: Context)  : ViewModel() {
 
@@ -17,17 +16,6 @@ class NotificationViewModel(context: Context)  : ViewModel() {
     fun handleNotification(title: String?, message: String?) {
         val notificationData = NotificationModel(title, message)
         notificationLiveData.postValue(notificationData)
-    }
-
-    //=============================================
-    private val notificationData = MutableLiveData<RemoteMessage>()
-
-    fun getNotificationData(): LiveData<RemoteMessage> {
-        return notificationData
-    }
-
-    fun setNotificationData(remoteMessage: RemoteMessage) {
-        notificationData.value = remoteMessage
     }
 
 }

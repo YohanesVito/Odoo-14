@@ -12,8 +12,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         ViewModelProvider.AndroidViewModelFactory.getInstance(application).create(NotificationViewModel::class.java)
     }
 
-
-
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
 

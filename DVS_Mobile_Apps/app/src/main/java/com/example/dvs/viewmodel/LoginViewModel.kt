@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import com.example.dvs.remote.retrofit.ApiConfig
 import com.example.dvs.remote.response.LoginResponse
 import com.example.dvs.model.UserPreference
-import com.example.dvs.remote.response.AuthParam
+import com.example.dvs.remote.param.AuthParam
 import com.example.dvs.ui.splashscreen.dataStore
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
@@ -56,7 +56,7 @@ class LoginViewModel(context: Context): ViewModel(){
         return result
     }
 
-    fun testLogin(access: String, provider: String, oauth_uid: String): LiveData<com.example.dvs.util.Result<Boolean>> {
+    fun loginWithGoogle(username: String,access: String, provider: String, oauth_uid: String): LiveData<com.example.dvs.util.Result<Boolean>> {
         val result = MutableLiveData<com.example.dvs.util.Result<Boolean>>()
         result.value = com.example.dvs.util.Result.Loading
         val mAuthParam = AuthParam(accessToken = access, provider = provider, oauth_uid = oauth_uid)
@@ -67,15 +67,14 @@ class LoginViewModel(context: Context): ViewModel(){
             ) {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
-                    Log.i("Response Body",responseBody.toString())
                     if (responseBody != null){
                         result.value = com.example.dvs.util.Result.Success(true)
 
                         Log.i("TOKEN TEST LOGIN",responseBody.accessToken!!)
                         MainScope().launch {
                             userPreference.saveUser(
-                                username = "VITO GOOGLE",
-                                token = responseBody.accessToken!!,
+                                username = username,
+                                token = responseBody.accessToken,
                             )
                             userPreference.login()
                         }
