@@ -2,42 +2,60 @@ package com.example.dvs.ui.chat
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.dvs.ViewModelFactory
 import com.example.dvs.databinding.ActivityChatBinding
+import com.example.dvs.model.NewContactModel
 import com.example.dvs.remote.param.Notification
 import com.example.dvs.remote.param.NotificationParam
+import com.example.dvs.util.Constant
 import com.example.dvs.util.Result
 import com.example.dvs.viewmodel.ChatViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.auth.Token
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class ChatActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChatBinding
     private lateinit var chatViewModel: ChatViewModel
-
+    private lateinit var auth: FirebaseAuth
+    private lateinit var currentUser: FirebaseUser
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
 
+        setupFirebaseUser()
         setupViewModel()
         setupAction()
 
     }
+    private fun setupFirebaseUser() {
+        auth = Firebase.auth
+        currentUser = auth.currentUser!!
+    }
 
     private fun setupAction() {
+
+        val mContact = intent.getParcelableExtra<NewContactModel>(Constant.CONTACT)
        binding.btTestNotification.setOnClickListener{
+
            //dummy data
            val mNotification = Notification(
-               title = "Halo Dari Emulator",
+               title = "Halo Dari ${currentUser.displayName}",
                body = "Selamat anda mendapatkan notifikasi",
                subtitle = "Firebase Cloud Message Subtitle"
            )
            val mNotificationParam = NotificationParam(
                //SM A32
-               to = "f7et1j4GThWjrmFsxx28Xn:APA91bHuP_GRJn5PJJlHL4LiHxrAjzAGRf4DdiawMQxeoEovJ84nYUymwnH_UE-pMLZXXQO6eNBXe3nfaT5aOKEfjdLWZIPwxhlVWHgFLVlCjNoTzh9lCfufM86C8lHASTvlHU64yk7O",
+               to = mContact?.tokenFCM,
                notification = mNotification,
            )
            chatViewModel.sendNotification(mNotificationParam).observe(this){
@@ -62,6 +80,7 @@ class ChatActivity : AppCompatActivity() {
             this,
             ViewModelFactory(this)
         )[ChatViewModel::class.java]
+
     }
 
 }

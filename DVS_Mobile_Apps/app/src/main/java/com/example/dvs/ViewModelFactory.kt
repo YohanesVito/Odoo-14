@@ -3,7 +3,7 @@ package com.example.dvs
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.dvs.ui.notification.NotificationViewModel
+import com.example.dvs.viewmodel.NotificationViewModel
 import com.example.dvs.viewmodel.*
 
 class ViewModelFactory(private val context: Context) : ViewModelProvider.NewInstanceFactory() {
@@ -23,9 +23,9 @@ class ViewModelFactory(private val context: Context) : ViewModelProvider.NewInst
             modelClass.isAssignableFrom(ChatViewModel::class.java) -> {
                 ChatViewModel(context) as T
             }
-//            modelClass.isAssignableFrom(MonitorViewModel::class.java) -> {
-//                MonitorViewModel(Injection.provideRepository(context)) as T
-//            }
+            modelClass.isAssignableFrom(ListContactViewModel::class.java) -> {
+                ListContactViewModel(context) as T
+            }
 //            modelClass.isAssignableFrom(MapsViewModel::class.java) -> {
 //                MapsViewModel(Injection.provideRepository(context)) as T
 //            }

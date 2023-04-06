@@ -5,11 +5,14 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.dvs.model.NewContactModel
 import com.example.dvs.remote.retrofit.ApiConfig
 import com.example.dvs.remote.response.LoginResponse
 import com.example.dvs.model.UserPreference
 import com.example.dvs.remote.param.AuthParam
 import com.example.dvs.ui.splashscreen.dataStore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -39,7 +42,7 @@ class LoginViewModel(context: Context): ViewModel(){
                         MainScope().launch {
                             userPreference.saveUser(
                                 username = username,
-                                token = responseBody.accessToken!!,
+                                token = responseBody.accessToken,
                             )
                             userPreference.login()
                         }
@@ -93,4 +96,31 @@ class LoginViewModel(context: Context): ViewModel(){
         return result
     }
 
+    fun saveUsertoFireStore(uid: String, email: String, avatar: String, tokenFCM: String){
+        val db = Firebase.firestore
+        val user = NewContactModel(uid,email,avatar,tokenFCM)
+
+        db.collection("DVS-User")
+            .whereEqualTo("uid",user.uid)
+            .get()
+            .addOnSuccessListener { documents ->
+                if (documents.isEmpty) {
+                    // No matching documents, so add new user
+                    db.collection("DVS-User")
+                        .add(user)
+                        .addOnSuccessListener { documentReference ->
+                            Log.d("LoginViewModel", "DocumentSnapshot added with ID: ${documentReference.id}")
+                        }
+                        .addOnFailureListener { e ->
+                            Log.w("LoginViewModel", "Error adding document", e)
+                        }
+                } else {
+                    // User already exists, so do nothing or show an error message
+                    Log.d("LoginViewModel", "User with email already exists")
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.w("LoginViewModel", "Error checking for user with email", e)
+            }
+    }
 }

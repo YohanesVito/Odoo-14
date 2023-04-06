@@ -1,4 +1,4 @@
-package com.example.dvs.ui.notification
+package com.example.dvs.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.LiveData
@@ -13,7 +13,7 @@ class NotificationViewModel(context: Context)  : ViewModel() {
     fun getNotificationLiveData(): LiveData<NotificationModel> = notificationLiveData
 
     // This function will be called when a new FCM notification is received
-    fun handleNotification(title: String?, message: String?) {
+    fun generateNotification(title: String?, message: String?) {
         val notificationData = NotificationModel(title, message)
         notificationLiveData.postValue(notificationData)
     }

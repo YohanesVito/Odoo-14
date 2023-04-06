@@ -3,16 +3,14 @@ package com.example.dvs.ui.notification
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.dvs.R
 import com.example.dvs.ViewModelFactory
 import com.example.dvs.databinding.ActivityNotificationBinding
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.messaging.FirebaseMessaging
+import com.example.dvs.util.TokenGenerator
+import com.example.dvs.viewmodel.NotificationViewModel
 
 class NotificationActivity : AppCompatActivity() {
 

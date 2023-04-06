@@ -1,6 +1,12 @@
 package com.example.dvs.model
 
-data class ContactModel(
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class NewContactModel(
+    val uid: String,
+    val email: String,
     val avatar: String,
-    val name: String
-)
+    val tokenFCM: String,
+): Parcelable

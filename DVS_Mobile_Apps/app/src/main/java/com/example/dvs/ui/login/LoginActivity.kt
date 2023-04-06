@@ -3,6 +3,7 @@ package com.example.dvs.ui.login
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -12,6 +13,7 @@ import com.example.dvs.R
 import com.example.dvs.ViewModelFactory
 import com.example.dvs.databinding.ActivityLoginBinding
 import com.example.dvs.ui.main.MainActivity
+import com.example.dvs.util.TokenGenerator
 import com.example.dvs.util.Result
 import com.example.dvs.viewmodel.LoginViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -21,6 +23,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class LoginActivity : AppCompatActivity() {
 
@@ -71,7 +75,11 @@ class LoginActivity : AppCompatActivity() {
             login()
         }
 
-//        Firebase.auth.signOut()
+        binding.btLogout.setOnClickListener {
+            Firebase.auth.signOut()
+            googleSignInClient.signOut()
+            Toast.makeText(this,"Berhasil Logout",Toast.LENGTH_SHORT).show()
+        }
 
         binding.btLoginGoogle.setOnClickListener {
             binding.progressBar.visibility = View.VISIBLE
@@ -79,6 +87,22 @@ class LoginActivity : AppCompatActivity() {
         }
 
     }
+
+    private fun saveUserToFirestore() {
+        val uid = Firebase.auth.currentUser?.uid
+        val email = Firebase.auth.currentUser?.email!!
+        val avatar = Firebase.auth.currentUser?.photoUrl.toString()
+
+        TokenGenerator().getFCMToken { token ->
+            Log.d("Token Generator: ", token)
+            // Do something with the token value here
+            if (uid != null) {
+                loginViewModel.saveUsertoFireStore(uid,email,avatar,token)
+            }
+        }
+
+    }
+
 
     private fun signInGoogle() {
         val signInIntent = googleSignInClient.signInIntent
@@ -111,19 +135,23 @@ class LoginActivity : AppCompatActivity() {
             if(it.isSuccessful){
 //                Toast.makeText(this,account.displayName,Toast.LENGTH_SHORT).show()
 //                Log.i("AKUN",account.toString())
-//                Log.i("AKUN",account.id.toString())
-//                Log.i("AKUN",account.idToken.toString())
+                Log.i("AKUN",account.id.toString())
+                Log.i("AKUN",account.idToken.toString())
                 googleAccount = account
 //                Log.i("AKUN",account.displayName.toString())
 //                Log.i("AKUN",account.email.toString())
 //                Log.i("AKUN",account.photoUrl.toString())
-//                Log.i("AKUN",account.givenName.toString())
+
                 binding.progressBar.visibility = View.GONE
                 loginWithGoogle(googleAccount)
+                saveUserToFirestore()
+
             }else{
                 Toast.makeText(this,it.exception.toString(),Toast.LENGTH_SHORT).show()
             }
         }
+
+
 
     }
 
@@ -136,13 +164,15 @@ class LoginActivity : AppCompatActivity() {
                 is Result.Loading -> binding.progressBar.visibility = View.VISIBLE
                 is Result.Success -> {
                     binding.progressBar.visibility = View.GONE
+
+                    //panggil fungsi untuk menyimpan data di FireStore
                     Toast.makeText(this@LoginActivity, "Berhasil Masuk", Toast.LENGTH_SHORT).show()
                     val intentToHome = Intent(this, MainActivity::class.java)
                     startActivity(intentToHome)
                     finish()
                 }
                 is Result.Error -> {
-                    Toast.makeText(this@LoginActivity, "Gagal Masuk", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@LoginActivity, "Gagal Masuk, User Tidak Terdaftar", Toast.LENGTH_SHORT).show()
                     binding.progressBar.visibility = View.GONE
                 }
 
@@ -173,6 +203,7 @@ class LoginActivity : AppCompatActivity() {
 
             }
         }
+
 
     }
 

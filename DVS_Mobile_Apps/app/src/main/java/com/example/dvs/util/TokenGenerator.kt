@@ -1,4 +1,4 @@
-package com.example.dvs.ui.notification
+package com.example.dvs.util
 
 import android.util.Log
 import com.google.android.gms.tasks.OnCompleteListener
@@ -19,4 +19,21 @@ class TokenGenerator {
         })
         Log.d("Token Generator: ", token)
     }
+
+    fun getFCMToken(callback: (String) -> Unit) {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w("Notification Activity", "Fetching FCM registration token failed", task.exception)
+                callback("")
+                return@addOnCompleteListener
+            }
+
+            // Get new FCM registration token
+            val token = task.result
+            Log.d("FCM registration token", token)
+
+            callback(token ?: "")
+        }
+    }
+
 }

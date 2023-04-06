@@ -1,4 +1,4 @@
-package com.example.dvs.ui.notification
+package com.example.dvs.util
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.widget.RemoteViews
+import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.example.dvs.R
 import com.google.firebase.messaging.FirebaseMessagingService
@@ -14,8 +15,9 @@ import com.google.firebase.messaging.RemoteMessage
 
 const val channelId = "notification_channel"
 const val channelName = "com.example.dvs"
-class MyFirebaseMessagingService2: FirebaseMessagingService() {
+class MyFirebaseMessagingService: FirebaseMessagingService() {
 
+    @RequiresApi(Build.VERSION_CODES.S)
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         if (remoteMessage.notification != null){
 
@@ -27,7 +29,7 @@ class MyFirebaseMessagingService2: FirebaseMessagingService() {
         super.onMessageReceived(remoteMessage)
     }
 
-    fun getRemoteView(title: String, message: String): RemoteViews {
+    private fun getRemoteView(title: String, message: String): RemoteViews {
         val remoteView = RemoteViews("com.example.dvs",R.layout.notification)
 
         remoteView.setTextViewText(R.id.tv_title,title)
@@ -38,11 +40,16 @@ class MyFirebaseMessagingService2: FirebaseMessagingService() {
     }
 
     //generate the notification
-    fun generateNotification(title: String, message: String){
+    @RequiresApi(Build.VERSION_CODES.S)
+    private fun generateNotification(title: String, message: String){
         val intent = Intent(this,NotificationActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
-        val pendingIntent = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_ONE_SHOT)
+        val pendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            intent,
+            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_MUTABLE)
 
         //channel id, channel name
         var builder: NotificationCompat.Builder = NotificationCompat.Builder(
@@ -66,5 +73,9 @@ class MyFirebaseMessagingService2: FirebaseMessagingService() {
 
         notificationManager.notify(0,builder.build())
 
+    }
+
+    override fun onNewToken(token: String) {
+        super.onNewToken(token)
     }
 }

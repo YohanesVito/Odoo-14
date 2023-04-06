@@ -3,17 +3,21 @@ package com.example.dvs.ui.chat
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dvs.ViewModelFactory
 import com.example.dvs.databinding.ActivityListContactBinding
-import com.example.dvs.model.ContactModel
+import com.example.dvs.model.NewContactModel
+import com.example.dvs.util.Constant.Companion.CONTACT
 import com.example.dvs.util.Constant.Companion.NAME
-import com.example.dvs.viewmodel.ChatViewModel
+import com.example.dvs.viewmodel.ListContactViewModel
+
 
 
 class ListContactActivity : AppCompatActivity() {
     private lateinit var binding: ActivityListContactBinding
+    private lateinit var listContactViewModel: ListContactViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,28 +31,35 @@ class ListContactActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
-        val contacts = listOf(
-            ContactModel("https://static.dw.com/image/63246417_604.jpg", "Edward Snowden"),
-            ContactModel("https://s.kaskus.id/images/2021/09/01/8937321_20210901110034.jpg", "Sandhika Galih"),
-            ContactModel("http://www.sinvestir.org/wp-content/uploads/2020/01/005710200_1500881661-1.jpg", "Gill Bates")
-        )
         val recyclerView = binding.rvReceiver
         recyclerView.layoutManager = LinearLayoutManager(this)
-        val adapter = ContactAdapter(contacts)
-        recyclerView.adapter = adapter
+        listContactViewModel.getContacts().observe(this){
+            Log.d("AllUser",it.toString())
+            val adapter = ContactAdapter(it)
+            recyclerView.adapter = adapter
+            adapter.setOnItemClickCallback(object : ContactAdapter.OnItemClickCallback {
+                override fun onItemClicked(data: NewContactModel) {
+                    startChatActivity(data)
+                }
+            })
+        }
 
-        adapter.setOnItemClickCallback(object : ContactAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: ContactModel) {
-                startChatActivity(data)
-            }
-        })
     }
-    private fun startChatActivity(mContact: ContactModel) {
-        val intentToChat = Intent(this,ChatActivity::class.java)
-        intentToChat.putExtra(NAME,mContact.name)
-        startActivity(intentToChat)
+    private fun startChatActivity(mContact: NewContactModel) {
+        //kirim bundle
+        val bundle = Bundle().apply {
+            putParcelable(CONTACT, mContact)
+        }
+        val intent = Intent(this, ChatActivity::class.java).apply {
+            putExtras(bundle)
+        }
+        startActivity(intent)
     }
     private fun setupViewModel() {
+        listContactViewModel = ViewModelProvider(
+            this,
+            ViewModelFactory(this)
+        )[ListContactViewModel::class.java]
 
     }
 
