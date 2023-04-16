@@ -11,15 +11,11 @@ import com.example.dvs.model.UserModel
 import com.example.dvs.remote.response.ProductsResponseItem
 import com.example.dvs.viewmodel.ListProductViewModel
 
-
-
 class ListProductActivity : AppCompatActivity() {
     private lateinit var binding: ActivityListProductBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var listProductAdapter: ListProductAdapter
     private lateinit var listProductViewModel: ListProductViewModel
-
-    private var products = ArrayList<ProductsResponseItem>()
     private var user: UserModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

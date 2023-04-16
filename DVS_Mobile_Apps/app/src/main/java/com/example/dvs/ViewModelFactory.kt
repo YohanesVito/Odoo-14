@@ -26,9 +26,13 @@ class ViewModelFactory(private val context: Context) : ViewModelProvider.NewInst
             modelClass.isAssignableFrom(ListContactViewModel::class.java) -> {
                 ListContactViewModel(context) as T
             }
+            modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
+                HomeViewModel(context) as T
+            }
 //            modelClass.isAssignableFrom(MapsViewModel::class.java) -> {
 //                MapsViewModel(Injection.provideRepository(context)) as T
 //            }
+
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
     }

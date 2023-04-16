@@ -2,13 +2,12 @@ package com.example.dvs.ui.chat
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.dvs.ViewModelFactory
 import com.example.dvs.databinding.ActivityChatBinding
-import com.example.dvs.model.NewContactModel
+import com.example.dvs.model.ContactModel
 import com.example.dvs.remote.param.Notification
 import com.example.dvs.remote.param.NotificationParam
 import com.example.dvs.util.Constant
@@ -17,11 +16,9 @@ import com.example.dvs.viewmodel.ChatViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.auth.Token
-import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class ChatActivity : AppCompatActivity() {
+class DetailChatActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChatBinding
     private lateinit var chatViewModel: ChatViewModel
     private lateinit var auth: FirebaseAuth
@@ -44,7 +41,7 @@ class ChatActivity : AppCompatActivity() {
 
     private fun setupAction() {
 
-        val mContact = intent.getParcelableExtra<NewContactModel>(Constant.CONTACT)
+        val mContact = intent.getParcelableExtra<ContactModel>(Constant.CONTACT)
        binding.btTestNotification.setOnClickListener{
 
            //dummy data
@@ -63,10 +60,10 @@ class ChatActivity : AppCompatActivity() {
                    is Result.Loading -> binding.progressBar.visibility = View.VISIBLE
                    is Result.Success -> {
                        binding.progressBar.visibility = View.GONE
-                       Toast.makeText(this@ChatActivity, "Berhasil Mengirim Notifikasi", Toast.LENGTH_SHORT).show()
+                       Toast.makeText(this@DetailChatActivity, "Berhasil Mengirim Notifikasi", Toast.LENGTH_SHORT).show()
                    }
                    is Result.Error -> {
-                       Toast.makeText(this@ChatActivity, "Gagal Mengirim Notifikasi", Toast.LENGTH_SHORT).show()
+                       Toast.makeText(this@DetailChatActivity, "Gagal Mengirim Notifikasi", Toast.LENGTH_SHORT).show()
                        binding.progressBar.visibility = View.GONE
                    }
 

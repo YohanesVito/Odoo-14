@@ -8,10 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.dvs.R
-import com.example.dvs.model.NewContactModel
+import com.example.dvs.model.ContactModel
 
-
-class ContactAdapter(private val mContact: List<NewContactModel>) :
+class ContactAdapter(private val mContact: List<ContactModel>) :
     RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
@@ -49,7 +48,7 @@ class ContactAdapter(private val mContact: List<NewContactModel>) :
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: NewContactModel)
+        fun onItemClicked(data: ContactModel)
     }
     // Define a custom ViewHolder class that contains a reference to the UI elements in a single chat message item
     class ContactViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

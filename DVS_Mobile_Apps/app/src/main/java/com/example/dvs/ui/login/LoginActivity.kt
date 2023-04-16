@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.dvs.R
 import com.example.dvs.ViewModelFactory
 import com.example.dvs.databinding.ActivityLoginBinding
-import com.example.dvs.ui.main.MainActivity
+import com.example.dvs.ui.home.HomeActivity
 import com.example.dvs.util.TokenGenerator
 import com.example.dvs.util.Result
 import com.example.dvs.viewmodel.LoginViewModel
@@ -167,7 +167,7 @@ class LoginActivity : AppCompatActivity() {
 
                     //panggil fungsi untuk menyimpan data di FireStore
                     Toast.makeText(this@LoginActivity, "Berhasil Masuk", Toast.LENGTH_SHORT).show()
-                    val intentToHome = Intent(this, MainActivity::class.java)
+                    val intentToHome = Intent(this, HomeActivity::class.java)
                     startActivity(intentToHome)
                     finish()
                 }
@@ -192,7 +192,7 @@ class LoginActivity : AppCompatActivity() {
                 is Result.Success -> {
                     binding.progressBar.visibility = View.GONE
                     Toast.makeText(this@LoginActivity, "Berhasil Masuk", Toast.LENGTH_SHORT).show()
-                    val intentToHome = Intent(this, MainActivity::class.java)
+                    val intentToHome = Intent(this, HomeActivity::class.java)
                     startActivity(intentToHome)
                     finish()
                 }

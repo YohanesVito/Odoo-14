@@ -10,6 +10,7 @@ import android.widget.RemoteViews
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.example.dvs.R
+import com.example.dvs.ui.notification.NotificationActivity
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
@@ -42,7 +43,7 @@ class MyFirebaseMessagingService: FirebaseMessagingService() {
     //generate the notification
     @RequiresApi(Build.VERSION_CODES.S)
     private fun generateNotification(title: String, message: String){
-        val intent = Intent(this,NotificationActivity::class.java)
+        val intent = Intent(this, NotificationActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
         val pendingIntent = PendingIntent.getActivity(

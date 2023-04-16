@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.dvs.model.NewContactModel
+import com.example.dvs.model.ContactModel
 import com.example.dvs.remote.retrofit.ApiConfig
 import com.example.dvs.remote.response.LoginResponse
 import com.example.dvs.model.UserPreference
@@ -98,7 +98,7 @@ class LoginViewModel(context: Context): ViewModel(){
 
     fun saveUsertoFireStore(uid: String, email: String, avatar: String, tokenFCM: String){
         val db = Firebase.firestore
-        val user = NewContactModel(uid,email,avatar,tokenFCM)
+        val user = ContactModel(uid,email,avatar,tokenFCM)
 
         db.collection("DVS-User")
             .whereEqualTo("uid",user.uid)
