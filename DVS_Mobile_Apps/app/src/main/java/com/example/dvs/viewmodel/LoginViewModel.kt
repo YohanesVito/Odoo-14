@@ -11,6 +11,10 @@ import com.example.dvs.remote.response.LoginResponse
 import com.example.dvs.model.UserPreference
 import com.example.dvs.remote.param.AuthParam
 import com.example.dvs.ui.splashscreen.dataStore
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.MainScope
@@ -123,4 +127,37 @@ class LoginViewModel(context: Context): ViewModel(){
                 Log.w("LoginViewModel", "Error checking for user with email", e)
             }
     }
+
+    fun saveUsertoRealtimeDatabase(uid: String, email: String, avatar: String, tokenFCM: String) {
+        val db = Firebase.database
+        val user = db.reference.child("users")
+
+        user.child(uid).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (!snapshot.exists()) {
+                    // User does not exist, so add new user
+                    val userData = mapOf(
+                        "email" to email,
+                        "avatar" to avatar,
+                        "token" to tokenFCM
+                    )
+                    user.child(uid).setValue(userData)
+                        .addOnSuccessListener {
+                            Log.d("LoginViewModel", "User added to Realtime Database")
+                        }
+                        .addOnFailureListener { e ->
+                            Log.w("LoginViewModel", "Error adding user to Realtime Database", e)
+                        }
+                } else {
+                    // User already exists, so do nothing or show an error message
+                    Log.d("LoginViewModel", "User already exists in Realtime Database")
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.w("LoginViewModel", "Error checking for user in Realtime Database", error.toException())
+            }
+        })
+    }
+
 }

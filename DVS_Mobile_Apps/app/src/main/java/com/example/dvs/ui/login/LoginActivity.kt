@@ -97,10 +97,9 @@ class LoginActivity : AppCompatActivity() {
             Log.d("Token Generator: ", token)
             // Do something with the token value here
             if (uid != null) {
-                loginViewModel.saveUsertoFireStore(uid,email,avatar,token)
+                loginViewModel.saveUsertoRealtimeDatabase(uid,email,avatar,token)
             }
         }
-
     }
 
 

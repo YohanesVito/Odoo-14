@@ -10,6 +10,7 @@ class ApiConfig {
         private const val remoteUrl = "https://api.rheem-vulcan.com/"
         private const val localUrl = "http://192.168.100.3:8000/"
         private const val remoteChatUrl = "https://fcm.googleapis.com/"
+        private const val remoteRealtimeDatabase = "https://proj14-dvs-default-rtdb.firebaseio.com/"
         fun getApiService(): ApiService {
             val loggingInterceptor =
                 HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -32,6 +33,20 @@ class ApiConfig {
                 .build()
             val retrofit = Retrofit.Builder()
                 .baseUrl(remoteChatUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build()
+            return retrofit.create(ApiService::class.java)
+        }
+
+        fun getApiServiceRealtimeDatabase(): ApiService {
+            val loggingInterceptor =
+                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+            val client = OkHttpClient.Builder()
+                .addInterceptor(loggingInterceptor)
+                .build()
+            val retrofit = Retrofit.Builder()
+                .baseUrl(remoteRealtimeDatabase)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

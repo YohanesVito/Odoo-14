@@ -5,11 +5,17 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.dvs.model.ChatModel
 import com.example.dvs.model.ContactModel
 import com.example.dvs.remote.param.NotificationParam
 import com.example.dvs.remote.response.NotificationResponse
 import com.example.dvs.remote.retrofit.ApiConfig
 import com.example.dvs.util.Result
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import retrofit2.Call
@@ -77,5 +83,51 @@ class ChatViewModel(context: Context): ViewModel() {
 
         return listUser
     }
+
+    fun sendMessage(chatId: String, senderId: String, recipientId: String, content: String){
+        val database = Firebase.database
+        val messagesRef = database.getReference("chats/$chatId/messages")
+        val messageId = messagesRef.push().key
+        val timestamp = System.currentTimeMillis()
+
+        if (messageId != null) {
+            val message = HashMap<String, Any>()
+            message["sender_id"] = senderId
+            message["recipient_id"] = recipientId
+            message["timestamp"] = timestamp
+            message["content"] = content
+            messagesRef.child(messageId).setValue(message)
+
+        }
+    }
+
+    fun getAllChat(): LiveData<List<ChatModel>> {
+        val chatList = MutableLiveData<List<ChatModel>>()
+
+        val chatRef = FirebaseDatabase.getInstance().reference.child("chats")
+        val chatListener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val chats = mutableListOf<ChatModel>()
+                for (chatSnapshot in snapshot.children) {
+                    val chatId = chatSnapshot.key.toString()
+                    val senderId = chatSnapshot.child("senderId").value.toString()
+                    val recipientId = chatSnapshot.child("recipientId").value.toString()
+                    val content = chatSnapshot.child("content").value.toString()
+                    val chat = ChatModel(chatId, senderId, recipientId, content)
+                    chats.add(chat)
+                }
+                chatList.value = chats
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Handle error
+            }
+        }
+        chatRef.addValueEventListener(chatListener)
+
+        return chatList
+    }
+
+
 
 }
