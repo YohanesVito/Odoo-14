@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.dvs.model.ChatModel
 import com.example.dvs.model.ContactModel
+import com.example.dvs.model.MessageModel
 import com.example.dvs.remote.param.NotificationParam
 import com.example.dvs.remote.response.NotificationResponse
 import com.example.dvs.remote.retrofit.ApiConfig
@@ -84,7 +85,7 @@ class ChatViewModel(context: Context): ViewModel() {
         return listUser
     }
 
-    fun sendMessage(chatId: String, senderId: String, recipientId: String, content: String){
+    fun sendMessage(chatId: String, senderId: String, recipientId: String, content: String) {
         val database = Firebase.database
         val messagesRef = database.getReference("chats/$chatId/messages")
         val messageId = messagesRef.push().key
@@ -92,12 +93,12 @@ class ChatViewModel(context: Context): ViewModel() {
 
         if (messageId != null) {
             val message = HashMap<String, Any>()
-            message["sender_id"] = senderId
-            message["recipient_id"] = recipientId
+            message["messageId"] = messageId
+            message["senderId"] = senderId
+            message["recipientId"] = recipientId
             message["timestamp"] = timestamp
             message["content"] = content
             messagesRef.child(messageId).setValue(message)
-
         }
     }
 
@@ -110,12 +111,21 @@ class ChatViewModel(context: Context): ViewModel() {
                 val chats = mutableListOf<ChatModel>()
                 for (chatSnapshot in snapshot.children) {
                     val chatId = chatSnapshot.key.toString()
-                    val senderId = chatSnapshot.child("senderId").value.toString()
-                    val recipientId = chatSnapshot.child("recipientId").value.toString()
-                    val content = chatSnapshot.child("content").value.toString()
-                    val chat = ChatModel(chatId, senderId, recipientId, content)
+                    val messages = mutableListOf<MessageModel>()
+                    for (messageSnapshot in chatSnapshot.child("messages").children) {
+                        val messageId = messageSnapshot.key.toString()
+                        val senderId = messageSnapshot.child("senderId").value.toString()
+                        val recipientId = messageSnapshot.child("recipientId").value.toString()
+                        val timestamp = messageSnapshot.child("timestamp").value.toString().toLong()
+                        val content = messageSnapshot.child("content").value.toString()
+                        val message = MessageModel(messageId, senderId, recipientId, timestamp, content)
+                        messages.add(message)
+                    }
+                    messages.sortBy { it.timestamp } // Sort the messages based on timestamp
+                    val chat = ChatModel(chatId, messages)
                     chats.add(chat)
                 }
+                chats.sortBy { it.messages.last().timestamp } // Sort the chats based on the latest message timestamp
                 chatList.value = chats
             }
 
@@ -124,9 +134,9 @@ class ChatViewModel(context: Context): ViewModel() {
             }
         }
         chatRef.addValueEventListener(chatListener)
-
         return chatList
     }
+
 
 
 

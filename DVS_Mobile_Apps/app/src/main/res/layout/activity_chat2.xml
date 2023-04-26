@@ -72,13 +72,13 @@
             android:id="@+id/rv_chat"
             android:visibility="visible"
             android:layout_width="match_parent"
+            android:layout_marginBottom="100dp"
             android:layout_height="wrap_content"/>
         
     </LinearLayout>
     
     <LinearLayout
         android:id="@+id/ll_02"
-        android:layout_above="@+id/ll_01"
         android:layout_alignParentBottom="true"
         android:weightSum="2"
         android:orientation="horizontal"
@@ -94,11 +94,10 @@
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="8dp"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content">
             
             <LinearLayout
-
                 android:padding="8dp"
                 android:baselineAligned="false"
                 android:orientation="horizontal"

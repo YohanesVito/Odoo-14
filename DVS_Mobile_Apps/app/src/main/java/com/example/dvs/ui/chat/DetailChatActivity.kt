@@ -2,18 +2,14 @@ package com.example.dvs.ui.chat
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
+import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.dvs.ViewModelFactory
 import com.example.dvs.databinding.ActivityChat2Binding
-import com.example.dvs.databinding.ActivityChatBinding
 import com.example.dvs.model.ContactModel
-import com.example.dvs.remote.param.Notification
-import com.example.dvs.remote.param.NotificationParam
 import com.example.dvs.util.Constant
-import com.example.dvs.util.Result
 import com.example.dvs.viewmodel.ChatViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -25,6 +21,7 @@ class DetailChatActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChat2Binding
     private lateinit var chatViewModel: ChatViewModel
     private lateinit var auth: FirebaseAuth
+    private lateinit var mReceiver: ContactModel
     private lateinit var currentUser: FirebaseUser
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,11 +29,29 @@ class DetailChatActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
+        setupReceiver()
         setupFirebaseUser()
         setupViewModel()
         setupAction()
 
     }
+    private fun setupReceiver() {
+        // Retrieve the bundle from the intent
+        val bundle = intent.extras
+
+        // Extract the ContactModel object from the bundle
+        mReceiver = bundle?.getParcelable<ContactModel>(Constant.CONTACT)!!
+
+        //setup photo Profile
+        Glide.with(this)
+            .load(mReceiver.avatar)
+            .circleCrop()
+            .into(binding.ivProfile)
+
+        //setup profile name
+        binding.tvName.text = mReceiver.email
+    }
+
     private fun setupFirebaseUser() {
         auth = Firebase.auth
         currentUser = auth.currentUser!!
@@ -44,31 +59,24 @@ class DetailChatActivity : AppCompatActivity() {
 
     private fun setupAction() {
         //setup RecyclerView
-        val recyclerView = binding.rvChat
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        val linearLayoutManager = LinearLayoutManager(this)
+        binding.rvChat.layoutManager = linearLayoutManager
 
         getAllChat()
-        val message = binding.etMessageBox.text.toString()
         val mContact = intent.getParcelableExtra<ContactModel>(Constant.CONTACT)
 
-        if (message != "") {
-
-            binding.ivSend.setOnClickListener {
-
+        binding.ivSend.setOnClickListener {
+            val message = binding.etMessageBox.text.toString()
+            if (message != "") {
+                Log.d("pesan",message)
                 chatViewModel.sendMessage(
                     chatId = UUID.randomUUID().toString(),
-                    senderId = currentUser.uid.toString(),
+                    senderId = currentUser.uid,
                     recipientId = mContact?.uid.toString(),
-                    content = message
+                    content = message,
                 )
-
                 binding.etMessageBox.setText("")
             }
-
-
-        } else {
-            binding.ivSend.isClickable = false
-            binding.ivSend.isEnabled = false
         }
 
 //       binding.btTestNotification.setOnClickListener{
@@ -105,7 +113,9 @@ class DetailChatActivity : AppCompatActivity() {
     private fun getAllChat() {
         chatViewModel.getAllChat().observe(this){
             val adapter = ChatAdapter(it)
+            Log.d("test",it.toString())
             binding.rvChat.adapter = adapter
+            binding.rvChat.scrollToPosition(adapter.itemCount - 1)
         }
     }
 

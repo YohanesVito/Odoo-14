@@ -1,7 +1,5 @@
 package com.example.dvs.model
 
-import android.os.IBinder.DeathRecipient
-
 data class ChatMessageModel(
     val receiver: String,
     val title: String,
@@ -10,7 +8,14 @@ data class ChatMessageModel(
 
 data class ChatModel(
     val chatId: String,
+    val messages: List<MessageModel>
+)
+
+data class MessageModel(
+    val messageId: String,
     val senderId: String,
     val recipientId: String,
+    val timestamp: Long,
     val content: String
 )
+
